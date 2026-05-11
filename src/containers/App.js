@@ -34,7 +34,7 @@ class App extends Component {
             return <h1>Loading</h1>
         } else {
             return (
-                <> {/* start fragment section */}        
+                <> {/* start fragment section */}       
                 <div className='tc'>
                     <h1 className='f1'>Robofriends</h1>
                     <SearchBox searchChange={this.onSearchChange}/>
