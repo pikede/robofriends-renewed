@@ -4,35 +4,35 @@ import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 import ErrorBoundary from '../components/ErrorBoundary';
-import { setSearchField } from '../action';
+import { setSearchField, requestRobots } from '../action';
 import './App.css';
 
 const mapStateToProps = state => {
     return {
-        searchField : state.searchField // value is from reducer searchRobots
+        searchField : state.searchRobots.searchField, // value is from reducer searchRobots
+        robots: state.requestRobots.robots,
+        isPending: state.requestRobots.isPending,
+        error: state.requestRobots.error
     }
 } 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSearchChange : (event) => dispatch(setSearchField(event.target.value)) // dispatch event when user types to the action
+        onSearchChange : (event) => dispatch(setSearchField(event.target.value)), // dispatch event when user types to the action
+        onRequestRobots: () => dispatch(requestRobots()) // same as requestRobots(dispatch)
     }
 }
 function App(store) {
-    
-    const [robots, setRobots] = useState([]) // uses array destructing [value, setter]
-    const { searchField, onSearchChange } = store
+    const { searchField, onSearchChange, robots, isPending } = store
 
     useEffect(() => { // lifecycle event method replaces componentDidMount, componentDidUnMount 
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then( users => setRobots(users));        
+        store.onRequestRobots();
     }, []) // runs once, only runs when the empty array changes
 
     const filteredRobots = robots.filter(robot => {
         return robot.name.toLowerCase().includes(searchField.toLowerCase())
     })
 
-    if(!robots.length){
+    if(isPending){
         return <h1>Loading</h1>
     } else {
         return (
@@ -53,26 +53,16 @@ function App(store) {
 }
 
 // class App extends Component {
-//     constructor() {
-//         super()
-//         this.state = {
-//             robots : []
-//         }        
-//     }
-
 //     componentDidMount(){ // lifecycle event method replaces componentDidMount, componentDidUnMount 
-//         fetch('https://jsonplaceholder.typicode.com/users')
-//         .then(response => response.json())
-//         .then( users => this.setState({robots : users}));        
+//         this.props.onRequestRobots()
 //     }
 
 //     render(){
-//         const {robots} = this.state
-//         const { searchField, onSearchChange } = this.props
+//         const { searchField, onSearchChange, robots, isPending } = this.props
 //         const filteredRobots = robots.filter(robot => {
 //             return robot.name.toLowerCase().includes(searchField.toLowerCase())
 //         })
-//         if(!this.state.robots.length){
+//         if(isPending){
 //             return <h1>Loading</h1>
 //         } else {
 //             return (
