@@ -6,6 +6,8 @@ A React application that showcases a collection of robot friends with search fun
 
 RoboFriends Renewed is a modern React application built with the latest technologies. It features a searchable interface for browsing through a list of robotic characters, demonstrating core React concepts and Redux state management patterns.
 
+![Robofriends](robofreinds_example.png)
+
 ## Features
 
 - 🔍 **Search Functionality** - Easily search through robot profiles
@@ -18,7 +20,7 @@ RoboFriends Renewed is a modern React application built with the latest technolo
 
 - **Frontend Framework**: [React](https://react.dev/) (v19.2.5)
 - **State Management**: [Redux](https://redux.js.org/) (v5.0.1)
-- **Redux Middleware**: 
+- **Redux Middleware**:
   - [Redux Thunk](https://github.com/reduxjs/redux-thunk) - Async actions
   - [Redux Logger](https://github.com/LogRocket/redux-logger) - State logging
 - **CSS Framework**: [Tachyons](https://tachyons.io/) (v4.12.0)
@@ -26,6 +28,7 @@ RoboFriends Renewed is a modern React application built with the latest technolo
 - **Deployment**: [gh-pages](https://pages.github.com/)
 
 ### Language Composition
+
 - **JavaScript**: 81.3%
 - **HTML**: 13.2%
 - **CSS**: 5.5%
@@ -33,12 +36,14 @@ RoboFriends Renewed is a modern React application built with the latest technolo
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js (v14 or higher)
 - npm or yarn
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/pikede/robofriends-renewed.git
    cd robofriends-renewed
